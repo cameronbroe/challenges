@@ -1,0 +1,37 @@
+@startuml
+object Customer {
+    customerId: int
+    firstName: string
+    lastName: string
+}
+
+object Item {
+    itemId: int
+    description: string
+    price: money
+}
+
+object Merchant {
+    merchantId: int
+    merchantName: string
+    merchantAddress: string
+}
+
+object CustomerOrder {
+    customerOrderId: int
+    customerId: int
+    merchantId: int
+}
+
+object CustomerOrderItem {
+    customerOrderItemId: int
+    customerOrderId: int
+    itemId: int
+    quantity: int
+}
+
+CustomerOrderItem "1..*" -- "1" CustomerOrder
+CustomerOrder "1" -- "1" Merchant
+CustomerOrderItem "1" -- "1" Item
+CustomerOrder "1..*" -- "1" Customer
+@enduml

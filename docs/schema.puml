@@ -30,8 +30,8 @@ object CustomerOrderItem {
     quantity: int
 }
 
-CustomerOrderItem "1..*" -- "1" CustomerOrder
-CustomerOrder "1" -- "1" Merchant
-CustomerOrderItem "1" -- "1" Item
-CustomerOrder "1..*" -- "1" Customer
+CustomerOrderItem "1..*" <--> "1" CustomerOrder
+CustomerOrder "1..*" <--> "1" Merchant
+CustomerOrderItem  --> "1" Item
+CustomerOrder "1..*" <--> "1" Customer
 @enduml

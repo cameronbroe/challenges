@@ -22,7 +22,7 @@ RSpec.describe Customer, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it "has many orders" do
+  it "should have many orders" do
     should have_many(:customer_orders)
   end
 end

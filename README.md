@@ -36,7 +36,7 @@ Also, it would prevent weird race conditions that could result from multiple wri
 storage of upload requests for internal bookkeeping. Also, it does make a lot of assumptions about the data.
 
 * **UI/UX** - The table will just infinitely grow and does not implement pagination. This would need need to
-be changed paginate when there is too much data. Also, there are plenty of missing features here around updating
+be changed to paginate when there is too much data. Also, there are plenty of missing features here around updating
 existing data or adding data without a spreadsheet. We could also generate different reports.
 
 * **React** - I used StimulusJS for simplicity, but I would use React for a real version of this given

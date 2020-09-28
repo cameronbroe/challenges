@@ -24,7 +24,7 @@ export default class extends Controller {
         if(this.fileInputTarget.files.length > 0) {
             const selectedFile = this.fileInputTarget.files[0];
             const formData = new FormData();
-            formData.append('salesData', selectedFile);
+            formData.append('file', selectedFile);
             formData.append('authenticity_token', this.authenticityTokenTarget.value);
             fetch('/upload', {
                 method: 'POST',
@@ -37,7 +37,11 @@ export default class extends Controller {
                 return response.json();
             })
             .then(result => {
-                this.showSuccessMessage('Successfully uploaded and processed the sales data!')
+                if(result.status === 'success') {
+                    this.showSuccessMessage(result.message);
+                } else {
+                    this.showErrorMessage(result.message);
+                }
             })
             .catch(err => {
                 this.showErrorMessage(err);
@@ -69,7 +73,7 @@ export default class extends Controller {
     showErrorMessage(contents) {
         setTimeout(() => {
             this.dismissErrorMessage();
-        }, 5000);
+        }, 3000);
         this.messagesSectionTarget.classList.remove('is-hidden');
         this.errorMessageContentsTarget.textContent = contents;
         this.errorMessageTarget.classList.remove('is-hidden');
@@ -78,7 +82,8 @@ export default class extends Controller {
     showSuccessMessage(contents) {
         setTimeout(() => {
             this.dismissSuccessMessage();
-        }, 5000);
+            location.reload();
+        }, 3000);
         this.messagesSectionTarget.classList.remove('is-hidden');
         this.successMessageContentsTarget.textContent = contents;
         this.successMessageTarget.classList.remove('is-hidden');

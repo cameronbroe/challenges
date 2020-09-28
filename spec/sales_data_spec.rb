@@ -8,7 +8,7 @@ RSpec.describe SalesData do
       Jack Burton,Premium Cowboy Boots,149.99,1,Carpenter Outfitters,99 Factory Drive
       DATA
 
-      SalesData.handle(sales_csv)
+      SalesData.import(sales_csv)
 
       expect(Customer.count).to be(1)
       expect(Item.count).to be(1)
@@ -26,7 +26,7 @@ RSpec.describe SalesData do
       Ellen Ripley,Stomper Shoes,129.00,1,Parker Footwear,77 Main Street
       DATA
 
-      SalesData.handle(sales_csv)
+      SalesData.import(sales_csv)
 
       expect(Customer.count).to be(1)
       expect(Item.count).to be(2)
@@ -42,7 +42,7 @@ RSpec.describe SalesData do
       Butch Coolidge,Black Hoodie,49.99,3,Hero Outlet,123 Main Street
       DATA
 
-      SalesData.handle(sales_csv)
+      SalesData.import(sales_csv)
 
       expect(Customer.count).to be(2)
       expect(Item.count).to be(2)
@@ -58,7 +58,7 @@ RSpec.describe SalesData do
       Ellen Ripley,Black Hoodie,49.99,1,Parker Footwear,77 Main Street
       DATA
 
-      SalesData.handle(sales_csv)
+      SalesData.import(sales_csv)
 
       expect(Customer.count).to be(2)
       expect(Item.count).to be(1)
@@ -96,6 +96,27 @@ RSpec.describe SalesData do
         valid = SalesData.validate(sales_csv)
         expect(valid).to be(true)
       end
+    end
+  end
+
+  describe "get flattened sales data" do
+    it "flattens the sales data into a format similar to input" do
+      sales_csv = <<-DATA.strip_heredoc
+      Customer Name,Item Description,Item Price,Quantity,Merchant Name,Merchant Address
+      Jack Burton,Premium Cowboy Boots,0,1,Carpenter Outfitters,99 Factory Drive
+      DATA
+      SalesData.import(sales_csv)
+      data = SalesData.flattened
+      expect(data).to eq(
+        [{
+          :"Customer Name"=>"Jack Burton",
+          :"Item Description"=>"Premium Cowboy Boots",
+          :"Item Price"=>0,
+          :Quantity=>1,
+          :"Merchant Name"=>"Carpenter Outfitters",
+          :"Merchant Address"=>"99 Factory Drive"
+         }]
+      )
     end
   end
 end

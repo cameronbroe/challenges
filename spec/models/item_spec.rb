@@ -21,4 +21,8 @@ RSpec.describe Item, type: :model do
     subject.price = nil
     expect(subject).to_not be_valid
   end
+
+  it "should have a price that is money" do
+    should validate_numericality_of(:price)
+  end
 end

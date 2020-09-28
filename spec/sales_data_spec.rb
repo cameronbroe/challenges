@@ -67,4 +67,35 @@ RSpec.describe SalesData do
       expect(CustomerOrderItem.count).to be(2)
     end
   end
+
+  describe "validating" do
+    let(:empty_file) { File.open(file_fixture('empty_csv.csv')) }
+    let(:bad_header_file) { File.open(file_fixture('bad_header.csv')) }
+    let(:missing_cell_file) { File.open(file_fixture('missing_cell.csv')) }
+    let(:valid_data_file) { File.open(file_fixture('valid_data.csv')) }
+
+    context "uploaded data is missing a header column" do
+      it "should not be valid" do
+        sales_csv = bad_header_file.read
+        valid = SalesData.validate(sales_csv)
+        expect(valid).to be(false)
+      end
+    end
+
+    context "uploaded data is missing a cell in the data" do
+      it "should not be valid" do
+        sales_csv = missing_cell_file.read
+        valid = SalesData.validate(sales_csv)
+        expect(valid).to be(false)
+      end
+    end
+
+    context "uploaded data is complete" do
+      it "should be valid" do
+        sales_csv = valid_data_file.read
+        valid = SalesData.validate(sales_csv)
+        expect(valid).to be(true)
+      end
+    end
+  end
 end

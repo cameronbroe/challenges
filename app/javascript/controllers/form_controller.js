@@ -8,7 +8,8 @@ export default class extends Controller {
         "errorMessage",
         "successMessageContents",
         "errorMessageContents",
-        "messagesSection"
+        "messagesSection",
+        "authenticityToken"
     ]
 
     handleFileSelect() {
@@ -24,6 +25,7 @@ export default class extends Controller {
             const selectedFile = this.fileInputTarget.files[0];
             const formData = new FormData();
             formData.append('salesData', selectedFile);
+            formData.append('authenticity_token', this.authenticityTokenTarget.value);
             fetch('/upload', {
                 method: 'POST',
                 body: formData

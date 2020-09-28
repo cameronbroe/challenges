@@ -1,4 +1,5 @@
 <form>
+  <input name="authenticity_token" data-target="form.authenticityToken" value="<%= form_authenticity_token %>" type="hidden">
   <div class="field">
     <div class="control file has-name is-fullwidth">
       <label class="file-label">
@@ -27,7 +28,7 @@
       <button type="button" data-action="form#uploadData" class="button is-primary">Submit</button>
     </div>
     <div class="control">
-      <button type="button" data-action="form#clearFileInput" class="button is-danger">Clear</button>
+      <button type="button" data-action="form#clearFileInput" class="button is-danger">Reset</button>
     </div>
   </div>
 </form>

@@ -1,12 +1,13 @@
-<section class="section is-hidden" data-target="form.messagesSection">
-  <div class="container">
-    <%= render partial: 'messages' %>
+<section class="form-hero hero is-success is-bold">
+  <div class="hero-head form-messages is-hidden" data-target="form.messagesSection">
+    <div class="container">
+      <%= render partial: 'messages' %>
+    </div>
   </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h1 class="title">Upload Sales Data Spreadsheet</h1>
-    <%= render partial: 'form' %>
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Upload Sales Data Spreadsheet</h1>
+      <%= render partial: 'form' %>
+    </div>
   </div>
 </section>

@@ -32,4 +32,22 @@ class SalesData
       )
     end
   end
+
+  def self.validate(sales_csv)
+    parsed_csv = CSV.new(sales_csv, headers: true)
+    parsed_csv.each do |row|
+      required_columns = [
+          "Customer Name",
+          "Item Description",
+          "Item Price",
+          "Quantity",
+          "Merchant Name",
+          "Merchant Address"
+      ]
+      required_columns.each do |column|
+        return false unless row.include?(column) && !row[column].empty?
+      end
+    end
+    return true
+  end
 end

@@ -9,6 +9,14 @@ with an accompanying `docker-compose.yml` to run the application with Docker Com
 To start the app, simply run `docker-compose up` in a terminal. Docker Compose will take
 care of the rest. The application will be accessible at `http://localhost:3000`
 
+## Run the tests!
+
+The test suite can also be ran in Docker Compose!
+
+The command to do that is:
+
+`docker-compose -f docker-compose.yml -f docker-compose.test.yml run app rake`
+
 ## Database schema
 
 The data is stored following this schema:

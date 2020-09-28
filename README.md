@@ -43,3 +43,5 @@ existing data or adding data without a spreadsheet. We could also generate diffe
 sufficiently complex requirements for the front-end application. Also, the front-end should be wholly decoupled
 from the backend API so frontend and backend systems can be scaled independently. Also, clearer separation
 of system concerns than a pure monorepo would provide.
+
+* **Authentication** - Authentication definitely needs to be added and given that I used Rails, I would just use the Devise gem.

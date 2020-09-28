@@ -17,5 +17,4 @@ test:
 production:
   <<: *default
   database: sales_admin_impl_production
-  username: sales_admin_impl
-  password: <%= ENV['SALES_ADMIN_IMPL_DATABASE_PASSWORD'] %>
+  host: db
